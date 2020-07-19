@@ -5,8 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.swing.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -40,6 +47,18 @@ class BoardRepositoryTest {
     }
 
     @Test
+    public void testInsert200() {
+        for (int i = 1; i <= 200; i++) {
+            Board board = new Board();
+            board.setTitle("제목" + i);
+            board.setWriter("지은이" + i);
+            board.setContent("내용"+ i);
+            repository.save(board);
+            System.out.println(repository.count());
+        }
+    }
+
+    @Test
     public void testRead() throws Exception{
         Optional<Board> optionalBoard = repository.findById(1L);
         if (optionalBoard.isPresent()){
@@ -48,6 +67,42 @@ class BoardRepositoryTest {
         }
         else
             System.out.println("asdf");
+    }
+
+    @Test
+    public void testFindByTitle() {
+        repository.findBoardByTitle("제목200").forEach(board -> System.out.println(board));
+    }
+
+    @Test
+    public void testFindByWriter() {
+        repository.findByWriter("지은이10").forEach(board -> System.out.println(board));
+    }
+
+    @Test
+    public void testFindByWriterContaining() {
+        repository.findByWriterContaining("5").forEach(board -> System.out.println(board));
+    }
+
+    @Test
+    public void testBnoOrderByPaging() {
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        Collection<Board> result = repository.findByBnoGreaterThanOrderByBnoDesc(1L, pageRequest);
+        result.forEach(board -> System.out.println(board));
+    }
+
+    @Test
+    public void testBnoPagingSort() {
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        Page<Board> result = repository.findByBnoGreaterThan(0L, pageRequest);
+
+        System.out.println("PAGE SIZE   : " + result.getSize());
+        System.out.println("TOTAL PAGES : " + result.getTotalPages());
+        System.out.println("TOTAL COUNT : " + result.getTotalElements());
+        System.out.println("NEXT        : " + result.nextPageable());
+
+        List<Board> list = result.getContent();
+        list.forEach(board -> System.out.println(board));
     }
 
     @Test
