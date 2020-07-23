@@ -20,8 +20,12 @@ public class Exam02<E> {
         max = capacity;
         try {
             stack = (E[]) new Object[max];
-        } catch (OutOfMemoryError) {
+        } catch (OutOfMemoryError e) {
             max = 0;
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
