@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.1">
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
     <persistence-unit name="jpa">
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
@@ -9,11 +14,14 @@
                       value="jdbc:h2:tcp://localhost/~/test"/>
             <property name="javax.persistence.dialect.H2Dialect"
                       value="org.hibernate.dialect.H2Dialect"/>
-
+            
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
+            <!-- Camel to Under -->
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
         </properties>
     </persistence-unit>
 </persistence>

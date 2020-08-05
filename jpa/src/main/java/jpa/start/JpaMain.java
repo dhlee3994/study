@@ -1,6 +1,5 @@
 package jpa.start;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,16 +9,7 @@ public class JpaMain {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
 
-        try {
-            tx.begin();
-            logic(em);
-            tx.commit();
-
-        } catch (Exception e) {
-            tx.rollback();
-        } finally {
-            em.close();
-        }
+        em.close();
         emf.close();
     }
 
