@@ -1,3 +1,4 @@
+<!--
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{/layout/layout1}">
@@ -61,35 +62,35 @@
 	</div>
 
 </div>
-<!--  end fragment -->
 
 <th:block layout:fragment="script">
 
 	<script th:inline="javascript">
 	$(document).ready(function(){
-	
+
 		var formObj = $("#f1");
-		
+
 		$(".delbtn").click(function(){
-			
+
 			formObj.attr("action","delete");
 			formObj.attr("method", "post");
-			
+
 			formObj.submit();
-			
+
 		});
-		
+
 		$(".modbtn").click(function(){
-			
+
 			formObj.attr("action","modify");
 			formObj.attr("method", "post");
-			
+
 			formObj.submit();
-			
+
 		});
-		
-		
-	});	
+
+
+	});
 	</script>
 
 </th:block>
+-->
