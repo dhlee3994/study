@@ -1,6 +1,6 @@
-package me.dhlee.springboot2.controller;
+package me.dhlee.springboot2.controller.exam;
 
-import me.dhlee.springboot2.domain.Board;
+import me.dhlee.springboot2.domain.exam.Board;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

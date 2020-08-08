@@ -1,25 +1,19 @@
 package me.dhlee.springboot2.persistence;
 
-import com.querydsl.core.BooleanBuilder;
-import me.dhlee.springboot2.domain.Board;
-import me.dhlee.springboot2.domain.QBoard;
+import me.dhlee.springboot2.domain.exam.Board;
+import me.dhlee.springboot2.persistence.exam.BoardRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -1,9 +1,9 @@
 package me.dhlee.springboot2;
 
-import me.dhlee.springboot2.domain.Member;
-import me.dhlee.springboot2.domain.Profile;
-import me.dhlee.springboot2.persistence.MemberRepository;
-import me.dhlee.springboot2.persistence.ProfileRepository;
+import me.dhlee.springboot2.domain.exam.Member;
+import me.dhlee.springboot2.domain.exam.Profile;
+import me.dhlee.springboot2.persistence.exam.MemberRepository;
+import me.dhlee.springboot2.persistence.exam.ProfileRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

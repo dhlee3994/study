@@ -1,9 +1,9 @@
 package me.dhlee.springboot2;
 
 
-import me.dhlee.springboot2.domain.PDSBoard;
-import me.dhlee.springboot2.domain.PDSFile;
-import me.dhlee.springboot2.persistence.PDSBoardRepository;
+import me.dhlee.springboot2.domain.exam.PDSBoard;
+import me.dhlee.springboot2.domain.exam.PDSFile;
+import me.dhlee.springboot2.persistence.exam.PDSBoardRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

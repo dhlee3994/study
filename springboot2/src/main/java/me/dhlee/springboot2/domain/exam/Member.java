@@ -1,4 +1,4 @@
-package me.dhlee.springboot2.domain;
+package me.dhlee.springboot2.domain.exam;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

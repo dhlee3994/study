@@ -1,4 +1,4 @@
-package me.dhlee.springboot2.domain;
+package me.dhlee.springboot2.domain.exam;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

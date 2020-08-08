@@ -1,6 +1,6 @@
-package me.dhlee.springboot2.persistence;
+package me.dhlee.springboot2.persistence.exam;
 
-import me.dhlee.springboot2.domain.Member;
+import me.dhlee.springboot2.domain.exam.Member;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
