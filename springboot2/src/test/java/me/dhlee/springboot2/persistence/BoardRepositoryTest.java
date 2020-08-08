@@ -134,31 +134,4 @@ class BoardRepositoryTest {
     public void testDelete() {
         repository.deleteById(1L);
     }
-
-    // querydsl
-    @Test
-    public void testPredicate() {
-        String type = "t";
-        String keyword = "17";
-        BooleanBuilder builder = new BooleanBuilder();
-
-        QBoard qBoard = QBoard.board;
-        if (type.equals("t")) {
-            builder.and(qBoard.title.like("%" + keyword + "%"));
-        }
-
-        builder.and(qBoard.bno.gt(0L));
-
-        // Pageable pageable = PageRequest.of(0, 10);
-        Page<Board> result = repository.findAll(builder, new PageRequest(0, 10));
-
-        System.out.println("PAGE SIZE : " + result.getSize());
-        System.out.println("TOTAL PAGES : " + result.getTotalPages());
-        System.out.println("TOTAL COUNT : " + result.getTotalElements());
-        System.out.println("NEXT : " + result.nextPageable());
-
-        List<Board> list = result.getContent();
-        list.forEach(board -> System.out.println(board));
-    }
-
 }
