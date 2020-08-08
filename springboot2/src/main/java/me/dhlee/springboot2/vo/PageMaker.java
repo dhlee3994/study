@@ -19,53 +19,48 @@ public class PageMaker<T> {
 
     private List<Pageable> pageList;
 
-    public PageMaker(Page<T> result) {
+    public PageMaker(Page<T> result){
+
         this.result = result;
+
         this.currentPage = result.getPageable();
+
         this.currentPageNum = currentPage.getPageNumber() + 1;
+
         this.totalPageNum = result.getTotalPages();
+
         this.pageList = new ArrayList<>();
 
         calcPages();
+
     }
+    private void calcPages(){
 
-    private void calcPages() {
-        int tempEndNum = (int)(Math.ceil(this.currentPageNum/10.0) * 10 );
+        int tempEndNum = (int)(Math.ceil(this.currentPageNum/10.0)* 10);
 
-        int startNum = tempEndNum - 9;
+        int startNum = tempEndNum -9;
 
         Pageable startPage = this.currentPage;
 
-        for (int i = startNum; i < this.currentPageNum; i++)
+        //move to start Pageble
+        for(int i = startNum; i < this.currentPageNum; i++){
             startPage = startPage.previousOrFirst();
+        }
+        this.prevPage = startPage.getPageNumber() <= 0? null :startPage.previousOrFirst();
 
-        this.prevPage = startPage.getPageNumber() <= 0 ? null :startPage.previousOrFirst();
-
-        if (this.totalPageNum < tempEndNum) {
+        if(this.totalPageNum < tempEndNum){
             tempEndNum = this.totalPageNum;
             this.nextPage = null;
         }
 
-        for (int i = startNum; i < tempEndNum; i++) {
+        for(int i = startNum ; i <= tempEndNum; i++){
             pageList.add(startPage);
             startPage = startPage.next();
         }
+        this.nextPage = startPage.getPageNumber() +1 < totalPageNum ? startPage: null;
 
-        this.nextPage = startPage.getPageNumber() + 1 < totalPageNum ? startPage : null;
     }
 
-
-    @Override
-    public String toString() {
-        return "PageMaker{" +
-                "result=" + result +
-                ", prev=" + prevPage +
-                ", next=" + nextPage +
-                ", currentPageNum=" + currentPageNum +
-                ", total=" + totalPageNum +
-                ", currentPage=" + currentPage +
-                '}';
-    }
 
     public Page<T> getResult() {
         return result;

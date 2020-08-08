@@ -11,13 +11,21 @@ public class PageVO {
     private int page;
     private int size;
 
-    private String type;
     private String keyword;
-
+    private String type;
 
     public PageVO() {
         this.page = 1;
         this.size = DEFAULT_SIZE;
+    }
+
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public String getType() {
@@ -28,13 +36,7 @@ public class PageVO {
         this.type = type;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
 
     public int getPage() {
         return page;
@@ -49,11 +51,12 @@ public class PageVO {
     }
 
     public void setSize(int size) {
+
         this.size = size < DEFAULT_SIZE || size > DEFAULT_MAX_SIZE ? DEFAULT_SIZE : size;
     }
 
     public Pageable makePageable(int direction, String... props) {
-        ;
+
         Sort.Direction dir = direction == 0 ? Sort.Direction.DESC : Sort.Direction.ASC;
 
         return PageRequest.of(this.page - 1, this.size, dir, props);
