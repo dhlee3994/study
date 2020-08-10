@@ -36,8 +36,6 @@ public class PageVO {
         this.type = type;
     }
 
-
-
     public int getPage() {
         return page;
     }

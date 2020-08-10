@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_webboards")
@@ -22,6 +23,10 @@ public class WebBoard {
     @UpdateTimestamp
     private Timestamp updatedate;
 
+    @OneToMany(mappedBy = "board")
+    private List<WebReply> replies;
+
+
     @Override
     public String toString() {
         return "WebBoard{" +
@@ -31,8 +36,19 @@ public class WebBoard {
                 ", content='" + content + '\'' +
                 ", regdate=" + regdate +
                 ", updatedate=" + updatedate +
+                ", relies=" + replies +
                 '}';
     }
+
+    public List<WebReply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<WebReply> relies) {
+        this.replies = relies;
+    }
+
+
 
     public Long getBno() {
         return bno;
