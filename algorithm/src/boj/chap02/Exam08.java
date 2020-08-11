@@ -1,6 +1,6 @@
-package boj.chap03;
+package boj.chap02;
 
-public class Exam01 {
+public class Exam08 {
     public static void main(String[] args) {
         int n = 10;
         int[] criterion = new int[n];
