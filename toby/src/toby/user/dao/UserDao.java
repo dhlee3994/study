@@ -4,8 +4,23 @@ import toby.user.domain.User;
 
 import java.sql.*;
 
-public abstract class UserDao {
-    abstract Connection getConnection() throws ClassNotFoundException, SQLException;
+public class UserDao {
+    /*
+    1. 자유로운 확장이 안됨
+    2. DB 커넥션을 제공하는 클래스가 어떤것인지 UserDao가 구체적으로 알고있어야 함
+    => 인터페이스 도입
+    private SimpleConnectionMaker connectionMaker;
+
+    public UserDao() {
+        connectionMaker = new SimpleConnectionMaker();
+    }
+    */
+
+    private ConnectionMaker connectionMaker;
+
+    public UserDao() {
+        connectionMaker = new DConnectionMaker(); // 인터페이스 뿐 아니라 구체적인 클래스까지 알아야 한다는 문제 발생
+    }
 
     public static void main(String[] args) throws Exception {
         UserDao dao = new UserDao();
@@ -26,8 +41,9 @@ public abstract class UserDao {
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
+        Connection c = connectionMaker.makeConnection();
+
         String sql = "INSERT INTO USERS(ID, NAME, PASSWORD) VALUES (?, ?, ?)";
-        Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement(sql);
         ps.setString(1, user.getId());
         ps.setString(2, user.getName());
@@ -39,8 +55,9 @@ public abstract class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
+        Connection c = connectionMaker.makeNewConnection();
+
         String sql = "SELECT * FROM USERS WHERE ID = ?";
-        Connection c = getConnection();
         PreparedStatement ps = c.prepareStatement(sql);
         ps.setString(1, id);
 
