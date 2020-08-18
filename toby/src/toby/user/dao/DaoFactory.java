@@ -1,6 +1,11 @@
 package toby.user.dao;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class DaoFactory {
+    @Bean
     public UserDao userDao() {
         /*
         ConnectionMaker connectionMaker = new DConnectionMaker();
@@ -24,6 +29,7 @@ public class DaoFactory {
     => connectionMaker()메소드로 뽑아냈다
     */
 
+    @Bean
     public ConnectionMaker connectionMaker() {
         return new DConnectionMaker();
     }
